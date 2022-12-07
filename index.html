@@ -51,19 +51,9 @@
     }
 </script>
 
-<!--
-{
-    status: 'connected',
-    authResponse: {
-        accessToken: '...',
-        expiresIn:'...',
-        signedRequest:'...',
-        userID:'...'
-    }
-}-->
 <!-- The JS SDK Login Button -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status"></div>
@@ -73,10 +63,10 @@
 <script>
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '{your-app-id}',
+            appId      : '1842556356137248',
             cookie     : true,
             xfbml      : true,
-            version    : '{api-version}'
+            version    : 'v15.0'
         });
 
         FB.AppEvents.logPageView();
