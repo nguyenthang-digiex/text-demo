@@ -21,11 +21,9 @@
     }
 
     function checkLoginState() {
-        // Called when a person is finished with the Login Button.
-        FB.getLoginStatus(function (response) {
-            // See the onlogin handler
-            statusChangeCallback(response)
-        })
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
     }
 
     window.fbAsyncInit = function () {
@@ -53,6 +51,16 @@
     }
 </script>
 
+<!--
+{
+    status: 'connected',
+    authResponse: {
+        accessToken: '...',
+        expiresIn:'...',
+        signedRequest:'...',
+        userID:'...'
+    }
+}-->
 <!-- The JS SDK Login Button -->
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
@@ -61,11 +69,27 @@
 <div id="status"></div>
 
 <!-- Load the JS SDK asynchronously -->
-<script
-        async
-        defer
-        crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js"
-></script>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '{your-app-id}',
+            cookie     : true,
+            xfbml      : true,
+            version    : '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>
